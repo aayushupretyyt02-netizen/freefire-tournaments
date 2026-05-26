@@ -1,196 +1,366 @@
-
-import { motion } from 'framer-motion'
-import { Trophy, Flame, Users, Crown, Target, ShieldCheck, Zap } from 'lucide-react'
-
-export default function FFTournamentHub() {
-  const features = [
-    {
-      icon: <Flame className="w-10 h-10 text-yellow-400" />,
-      title: 'Daily Cash Matches',
-      desc: 'Daily Free Fire custom rooms with real players and intense gameplay.'
-    },
-    {
-      icon: <Target className="w-10 h-10 text-yellow-400" />,
-      title: 'Kill & Earn',
-      desc: 'Rush aggressively, take kills and dominate the battlefield.'
-    },
-    {
-      icon: <Users className="w-10 h-10 text-yellow-400" />,
-      title: 'Active Community',
-      desc: 'Join hundreds of Free Fire players through WhatsApp and Instagram.'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FF Tournament Hub</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
     }
-  ]
 
-  return (
-    <div className="min-h-screen bg-black text-white overflow-hidden font-sans">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,200,0,0.15),transparent_40%)]"></div>
+    body {
+      background: #050505;
+      color: white;
+      overflow-x: hidden;
+    }
 
-      <section className="relative min-h-screen flex items-center justify-center px-6">
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-yellow-500/20 blur-3xl"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-500/20 blur-3xl"></div>
-        </div>
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+      position: relative;
+      background: radial-gradient(circle at top, rgba(255,200,0,0.2), transparent 40%);
+    }
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="relative z-10 text-center max-w-5xl"
-        >
-          <div className="inline-flex items-center gap-2 bg-yellow-400/10 border border-yellow-400/20 px-5 py-2 rounded-full text-yellow-300 font-semibold mb-8">
-            <Zap className="w-5 h-5" /> DAILY 2 PM CASH CUSTOMS
-          </div>
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: rgba(255, 187, 0, 0.15);
+      filter: blur(120px);
+      top: -100px;
+      left: -100px;
+      z-index: 0;
+    }
 
-          <h1 className="text-6xl md:text-8xl font-black tracking-tight leading-none">
-            FF <span className="text-yellow-400">TOURNAMENT</span>
-            <br /> HUB 🔥
-          </h1>
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1000px;
+      animation: fadeUp 1s ease;
+    }
 
-          <p className="mt-8 text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            India’s growing Free Fire custom room community with daily tournaments, competitive gameplay, and real players 😈
-          </p>
+    .tag {
+      display: inline-block;
+      background: rgba(255, 200, 0, 0.1);
+      border: 1px solid rgba(255, 200, 0, 0.3);
+      padding: 12px 25px;
+      border-radius: 999px;
+      color: #ffd54a;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
 
-          <div className="mt-12 flex flex-col md:flex-row gap-5 justify-center">
-            <a
-              href="https://chat.whatsapp.com/FXp8j576P15IFPVOxT1Yx"
-              target="_blank"
-              className="bg-green-500 hover:scale-105 hover:bg-green-400 transition-all duration-300 text-black font-black px-10 py-5 rounded-3xl text-xl shadow-2xl"
-            >
-              JOIN WHATSAPP 🚀
-            </a>
+    h1 {
+      font-size: 85px;
+      line-height: 1;
+      font-weight: 900;
+    }
 
-            <a
-              href="https://instagram.com/ff__tournamenthub"
-              target="_blank"
-              className="bg-yellow-400 hover:scale-105 hover:bg-yellow-300 transition-all duration-300 text-black font-black px-10 py-5 rounded-3xl text-xl shadow-2xl"
-            >
-              FOLLOW INSTAGRAM 📸
-            </a>
-          </div>
-        </motion.div>
-      </section>
+    h1 span {
+      color: #ffcc00;
+    }
 
-      <section className="max-w-7xl mx-auto px-6 py-24">
-        <div className="grid md:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2 }}
-              viewport={{ once: true }}
-              className="bg-zinc-900/80 backdrop-blur-xl border border-yellow-400/10 rounded-[30px] p-8 hover:border-yellow-400/40 hover:-translate-y-2 transition-all duration-300 shadow-2xl"
-            >
-              {feature.icon}
-              <h3 className="mt-6 text-3xl font-black text-yellow-400">
-                {feature.title}
-              </h3>
-              <p className="mt-4 text-gray-300 leading-relaxed text-lg">
-                {feature.desc}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+    .hero p {
+      margin-top: 30px;
+      font-size: 22px;
+      color: #cfcfcf;
+      line-height: 1.6;
+    }
 
-      <section className="max-w-7xl mx-auto px-6 py-12">
-        <div className="bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-500 rounded-[40px] p-12 text-black shadow-[0_0_80px_rgba(255,200,0,0.2)] relative overflow-hidden">
-          <div className="absolute -top-20 -right-20 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+    .buttons {
+      margin-top: 45px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
 
-          <div className="relative z-10">
-            <div className="flex items-center gap-4 justify-center">
-              <ShieldCheck className="w-12 h-12" />
-              <h2 className="text-5xl font-black text-center">TOURNAMENT RULES</h2>
-            </div>
+    .btn {
+      text-decoration: none;
+      padding: 18px 35px;
+      border-radius: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      transition: 0.3s;
+      box-shadow: 0 0 30px rgba(255,200,0,0.15);
+    }
 
-            <div className="grid md:grid-cols-2 gap-8 mt-12">
-              <div className="bg-black/10 rounded-3xl p-8 backdrop-blur-xl">
-                <h3 className="text-3xl font-black mb-6">✅ Allowed</h3>
-                <ul className="space-y-4 text-xl font-semibold">
-                  <li>• Normal BR Gameplay</li>
-                  <li>• Grenades & Gloo Wall</li>
-                  <li>• Vehicles Allowed</li>
-                  <li>• Camping / Rush Allowed</li>
-                  <li>• Competitive Gameplay</li>
-                </ul>
-              </div>
+    .btn-green {
+      background: #25d366;
+      color: black;
+    }
 
-              <div className="bg-black/10 rounded-3xl p-8 backdrop-blur-xl">
-                <h3 className="text-3xl font-black mb-6">❌ Restricted</h3>
-                <ul className="space-y-4 text-xl font-semibold">
-                  <li>• No Hacks</li>
-                  <li>• No Teaming</li>
-                  <li>• No Revival</li>
-                  <li>• No Toxic Behaviour</li>
-                  <li>• Fair Match Only</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+    .btn-yellow {
+      background: #ffcc00;
+      color: black;
+    }
 
-      <section className="max-w-7xl mx-auto px-6 py-24">
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="bg-zinc-900 border border-yellow-400/10 rounded-[30px] p-8 text-center shadow-2xl">
-            <Crown className="w-14 h-14 mx-auto text-yellow-400" />
-            <h3 className="mt-6 text-4xl font-black">Daily Customs</h3>
-            <p className="mt-4 text-gray-400 text-lg">Real players every day at 2 PM 🔥</p>
-          </div>
+    .btn:hover {
+      transform: translateY(-5px) scale(1.03);
+    }
 
-          <div className="bg-zinc-900 border border-yellow-400/10 rounded-[30px] p-8 text-center shadow-2xl">
-            <Trophy className="w-14 h-14 mx-auto text-yellow-400" />
-            <h3 className="mt-6 text-4xl font-black">Competitive Matches</h3>
-            <p className="mt-4 text-gray-400 text-lg">Rush hard and dominate the lobby 😈</p>
-          </div>
+    .section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 90px 20px;
+    }
 
-          <div className="bg-zinc-900 border border-yellow-400/10 rounded-[30px] p-8 text-center shadow-2xl">
-            <Users className="w-14 h-14 mx-auto text-yellow-400" />
-            <h3 className="mt-6 text-4xl font-black">Growing Community</h3>
-            <p className="mt-4 text-gray-400 text-lg">Connect with Free Fire players 👑</p>
-          </div>
-        </div>
-      </section>
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
 
-      <section className="max-w-6xl mx-auto px-6 pb-24">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          className="bg-gradient-to-r from-zinc-900 to-black border border-yellow-400/20 rounded-[40px] p-14 text-center shadow-[0_0_80px_rgba(255,200,0,0.08)]"
-        >
-          <h2 className="text-6xl font-black text-yellow-400 leading-tight">
-            READY TO ENTER THE BATTLEFIELD? 😈
-          </h2>
+    .card {
+      background: #111;
+      border: 1px solid rgba(255, 204, 0, 0.15);
+      padding: 35px;
+      border-radius: 30px;
+      transition: 0.3s;
+      box-shadow: 0 0 30px rgba(0,0,0,0.4);
+    }
 
-          <p className="mt-8 text-2xl text-gray-300 max-w-3xl mx-auto">
-            Join our growing Free Fire tournament community and play daily custom matches with active players.
-          </p>
+    .card:hover {
+      transform: translateY(-10px);
+      border-color: #ffcc00;
+    }
 
-          <div className="mt-12 flex flex-col md:flex-row gap-5 justify-center">
-            <a
-              href="https://chat.whatsapp.com/FXp8j576P15IFPVOxT1Yx"
-              target="_blank"
-              className="bg-yellow-400 hover:bg-yellow-300 hover:scale-105 transition-all duration-300 text-black px-12 py-5 rounded-3xl font-black text-2xl shadow-2xl"
-            >
-              JOIN NOW 🚀
-            </a>
+    .card h2 {
+      margin-top: 20px;
+      color: #ffcc00;
+      font-size: 32px;
+    }
 
-            <a
-              href="https://instagram.com/ff__tournamenthub"
-              target="_blank"
-              className="border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black hover:scale-105 transition-all duration-300 px-12 py-5 rounded-3xl font-black text-2xl"
-            >
-              INSTAGRAM 📸
-            </a>
-          </div>
-        </motion.div>
-      </section>
+    .card p {
+      margin-top: 15px;
+      color: #c9c9c9;
+      line-height: 1.7;
+      font-size: 18px;
+    }
 
-      <footer className="border-t border-zinc-800 py-10 text-center text-gray-500 text-lg">
-        <p>© 2026 FF Tournament Hub • All Rights Reserved</p>
-        <p className="mt-2 text-yellow-400">Instagram: @ff__tournamenthub</p>
-      </footer>
+    .rules {
+      background: linear-gradient(135deg, #ffcc00, #ff7b00);
+      color: black;
+      border-radius: 40px;
+      padding: 60px 30px;
+      text-align: center;
+      box-shadow: 0 0 50px rgba(255,200,0,0.25);
+    }
+
+    .rules h2 {
+      font-size: 55px;
+      margin-bottom: 50px;
+      font-weight: 900;
+    }
+
+    .rule-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    .rule-box {
+      background: rgba(0,0,0,0.1);
+      padding: 35px;
+      border-radius: 25px;
+      text-align: left;
+    }
+
+    .rule-box h3 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .rule-box li {
+      margin: 15px 0;
+      font-size: 20px;
+      font-weight: bold;
+      list-style: none;
+    }
+
+    .cta {
+      text-align: center;
+      background: #111;
+      border: 1px solid rgba(255, 204, 0, 0.15);
+      border-radius: 40px;
+      padding: 80px 30px;
+      box-shadow: 0 0 40px rgba(255,200,0,0.08);
+    }
+
+    .cta h2 {
+      font-size: 65px;
+      color: #ffcc00;
+      font-weight: 900;
+    }
+
+    .cta p {
+      margin-top: 25px;
+      color: #ccc;
+      font-size: 22px;
+      line-height: 1.7;
+    }
+
+    footer {
+      border-top: 1px solid #222;
+      text-align: center;
+      padding: 40px 20px;
+      color: #888;
+      font-size: 18px;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media(max-width: 768px) {
+      h1 {
+        font-size: 55px;
+      }
+
+      .cta h2 {
+        font-size: 45px;
+      }
+
+      .rules h2 {
+        font-size: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="tag">🔥 DAILY 2 PM CASH CUSTOMS</div>
+
+      <h1>FF <span>TOURNAMENT</span><br>HUB 😈</h1>
+
+      <p>
+        Daily Free Fire custom rooms with real players, intense gameplay,
+        active community and full esports vibes 🔥
+      </p>
+
+      <div class="buttons">
+        <a href="https://chat.whatsapp.com/FXp8j576P15IFPVOxT1Yx" class="btn btn-green" target="_blank">
+          JOIN WHATSAPP 🚀
+        </a>
+
+        <a href="https://instagram.com/ff__tournamenthub" class="btn btn-yellow" target="_blank">
+          FOLLOW INSTAGRAM 📸
+        </a>
+      </div>
     </div>
-  )
-}
+  </section>
+
+  <section class="section">
+    <div class="cards">
+      <div class="card">
+        <h2>💸 Earn Money</h2>
+        <p>
+          Play custom rooms, take kills, dominate the battlefield and earn rewards.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>🔥 Daily Matches</h2>
+        <p>
+          Competitive Free Fire BR customs hosted every day at 2 PM.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>👑 Real Players</h2>
+        <p>
+          Join active Free Fire players and enjoy real competitive gameplay.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="rules">
+      <h2>TOURNAMENT RULES 🎮</h2>
+
+      <div class="rule-grid">
+        <div class="rule-box">
+          <h3>✅ Allowed</h3>
+          <ul>
+            <li>• Grenades Allowed</li>
+            <li>• Gloo Wall Allowed</li>
+            <li>• Vehicles Allowed</li>
+            <li>• Camping / Rush Allowed</li>
+            <li>• Normal BR Match</li>
+          </ul>
+        </div>
+
+        <div class="rule-box">
+          <h3>❌ Restricted</h3>
+          <ul>
+            <li>• No Hacks</li>
+            <li>• No Teaming</li>
+            <li>• No Revival</li>
+            <li>• Fair Match Only</li>
+            <li>• No Toxic Behaviour</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="cta">
+      <h2>READY TO JOIN? 😈</h2>
+
+      <p>
+        Join our growing Free Fire tournament community and play daily custom rooms.
+      </p>
+
+      <div class="buttons">
+        <a href="https://chat.whatsapp.com/FXp8j576P15IFPVOxT1Yx" class="btn btn-yellow" target="_blank">
+          JOIN NOW 🚀
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 FF Tournament Hub • All Rights Reserved</p>
+    <p style="margin-top:10px;color:#ffcc00;">Instagram: @ff__tournamenthub</p>
+  </footer>
+
+  <script>
+    const cards = document.querySelectorAll('.card');
+
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,204,0,0.15), #111)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.background = '#111';
+      });
+    });
+  </script>
+
+</body>
+</html>
